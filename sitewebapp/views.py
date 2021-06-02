@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 
 from . import models 
 # Create your views here.
@@ -14,3 +15,9 @@ def index(request):
     site = models.Website.objects.filter(status=True).first()
     projets = models.Project.objects.filter(status=True)
     return render(request, 'index.html', locals())
+
+
+def post_donne(request):
+
+    
+    return JsonResponse(datas, safe=False)

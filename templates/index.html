@@ -277,26 +277,27 @@ https://www.tooplate.com/view/2115-marvel
           <div class="col-lg-6 col-12">
             <div class="contact-form">
               <h2 class="mb-4">{{confi.entete_contact}}</h2>
-
+            <div id="form">
               <form action="" method="get">
-                <div class="row">
+                <div v-for="line in lines" class="row">
                   <div class="col-lg-6 col-12">
-                    <input type="text" class="form-control" name="name" placeholder="Your Name" id="name">
+                    <input type="text" class="form-control" v-model="line.name" placeholder="Your Name" id="name">
                   </div>
 
                   <div class="col-lg-6 col-12">
-                    <input type="email" class="form-control" name="email" placeholder="Email" id="email">
+                    <input type="email" class="form-control" v-model="line.email" placeholder="Email" id="email">
                   </div>
 
                   <div class="col-12">
-                    <textarea name="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                    <textarea v-model="line.message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
                   </div>
 
                   <div class="ml-lg-auto col-lg-5 col-12">
-                    <input type="submit" class="form-control submit-btn" value="Send Button">
+                    <input type="submit" class="form-control submit-btn" @click.prevent="send" value="Send Button">
                   </div>
                 </div>
               </form>
+            </div>
             </div>
           </div>
 
@@ -325,6 +326,40 @@ https://www.tooplate.com/view/2115-marvel
     <script src="{% static 'js/owl.carousel.min.js'%}"></script>
     <script src="{% static 'js/smoothscroll.js'%}"></script>
     <script src="{% static 'js/custom.js'%}"></script>
+
+    <script src="sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+      const app = new Vue({
+        el: '#form',
+        delimiters: ['${', '}'],
+        data:{
+          lines:[
+          {
+            'name': '',
+            'email': '',
+            'message': '',
+            
+          }
+          ]
+        },
+        mounted:{},
+        methods:{
+          send(){
+            Swal.fire(
+                    'Good job!',
+                    'You clicked the button!',
+                    'success'
+)
+          }
+        },
+        computed: {},
+      })
+
+    </script>
+
 
   </body>
 </html>
