@@ -115,36 +115,36 @@ https://www.tooplate.com/view/2115-marvel
                       </div>
 
                       <div class="owl-carousel owl-theme">
-                        
+                      {% for projet in projets %}
                         <div class="item">
                           <div class="project-info">
-                            <img src="{% static 'images/project/project-image01.png'%}" class="img-fluid" alt="project image">
+                            <img src="{{projet.image.url}}" class="img-fluid" alt="project image">
                           </div>
                         </div>
-
-                        <div class="item">
+                      {% endfor %}
+                        <!-- <div class="item">
                           <div class="project-info">
                             <img src="{% static 'images/project/project-image02.png'%}" class="img-fluid" alt="project image">
                           </div>
-                        </div>
-
+                        </div> -->
+<!-- 
                         <div class="item">
                           <div class="project-info">
                             <img src="{% static 'images/project/project-image03.png'%}" class="img-fluid" alt="project image">
                           </div>
-                        </div>
-
+                        </div> -->
+<!-- 
                         <div class="item">
                           <div class="project-info">
                             <img src="{% static 'images/project/project-image04.png'%}" class="img-fluid" alt="project image">
                           </div>
-                        </div>
-
+                        </div> -->
+<!-- 
                         <div class="item">
                           <div class="project-info">
                             <img src="{% static 'images/project/project-image05.png'%}" class="img-fluid" alt="project image">
                           </div>
-                        </div>
+                        </div> -->
 
                       </div>
 

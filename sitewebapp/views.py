@@ -12,4 +12,5 @@ def index(request):
     sociaux = models.Social.objects.filter(status=True)
     confi = models.Configuration.objects.filter(status=True).first()
     site = models.Website.objects.filter(status=True).first()
+    projets = models.Project.objects.filter(status=True)
     return render(request, 'index.html', locals())
