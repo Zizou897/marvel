@@ -8,8 +8,8 @@ from . import models
 class BannerAdmin(admin.ModelAdmin):
     list_display = ('titre', 'bienvenue_message', 'image', 'status')
 
-    # def image_view(self, obj):
-    #     return mark_safe(f'<img src="{obj.image.url}" style="width:200px; height:100px" >')
+    def image_view(self, obj):
+        return mark_safe(f'<img src="{obj.image.url}" style="width:200px; height:100px" >')
 
 
 
@@ -55,3 +55,9 @@ class WebsiteAdmin(admin.ModelAdmin):
 @admin.register(models.Configuration)
 class ConfigurationAdmin(admin.ModelAdmin):
     list_display = ('entete_projet', 'entete_contact', 'date_add', 'status')
+
+
+
+@admin.register(models.Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'status')

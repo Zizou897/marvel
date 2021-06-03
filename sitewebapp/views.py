@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 from . import models 
 # Create your views here.
@@ -16,8 +18,8 @@ def index(request):
     projets = models.Project.objects.filter(status=True)
     return render(request, 'index.html', locals())
 
-
+@csrf_exempt
 def post_donne(request):
 
-    
+
     return JsonResponse(datas, safe=False)

@@ -278,18 +278,19 @@ https://www.tooplate.com/view/2115-marvel
             <div class="contact-form">
               <h2 class="mb-4">{{confi.entete_contact}}</h2>
             <div id="form">
-              <form action="" method="get">
-                <div v-for="line in lines" class="row">
+              <form  method="posi">
+                <mark v-for=" error in errors" > ${ error } </mark>
+                <div  class="row">
                   <div class="col-lg-6 col-12">
-                    <input type="text" class="form-control" v-model="line.name" placeholder="Your Name" id="name">
+                    <input type="text" class="form-control" v-model="name" placeholder="Your Name" id="name">
                   </div>
 
                   <div class="col-lg-6 col-12">
-                    <input type="email" class="form-control" v-model="line.email" placeholder="Email" id="email">
+                    <input type="email" class="form-control" v-model="email" placeholder="Email" id="email">
                   </div>
 
                   <div class="col-12">
-                    <textarea v-model="line.message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
+                    <textarea v-model="message" rows="6" class="form-control" id="message" placeholder="Message"></textarea>
                   </div>
 
                   <div class="ml-lg-auto col-lg-5 col-12">
@@ -327,7 +328,7 @@ https://www.tooplate.com/view/2115-marvel
     <script src="{% static 'js/smoothscroll.js'%}"></script>
     <script src="{% static 'js/custom.js'%}"></script>
 
-    <script src="sweetalert2.all.min.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
@@ -336,24 +337,39 @@ https://www.tooplate.com/view/2115-marvel
         el: '#form',
         delimiters: ['${', '}'],
         data:{
-          lines:[
-          {
-            'name': '',
-            'email': '',
-            'message': '',
-            
-          }
-          ]
+          errorsName: [],
+          errorsEmail: [],
+          errorsMessage: [],
+          name: '',
+          email: '',
+          message: ''
         },
         mounted:{},
         methods:{
           send(){
-            Swal.fire(
-                    'Good job!',
-                    'You clicked the button!',
-                    'success'
-)
-          }
+            this.errors = [];
+
+            if(!this.message){
+              this.errorsName.push("champs requis")
+            }
+
+            if(!this.name){
+              this.errorsMessage.push("champs requis")
+            }
+
+            if(!this.validEmail(this.email)){
+              this.errorsEmail.push('veuillez saisir un mail valid')
+            }
+
+            if(!this.errors.length){
+              return true;
+            }
+          },
+
+          validEmail(email){
+            var re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            return re.test(email);
+          },
         },
         computed: {},
       })

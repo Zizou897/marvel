@@ -119,3 +119,17 @@ class Configuration(Base):
     class Meta:
         verbose_name = 'Configuration'
         verbose_name_plural = 'Configurations'
+
+
+class Contact(Base):
+    name = models.CharField(max_length=255)
+    email = models.EmailField()
+    message = models.TextField()
+
+    def __str__(self):
+        return self.entete_projet
+
+    class Meta:
+        verbose_name = 'Contact'
+        verbose_name_plural = 'Contacts'
+
