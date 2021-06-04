@@ -348,15 +348,17 @@ https://www.tooplate.com/view/2115-marvel
         methods:{
           send(){
             this.errors = [];
+            
+            if(!this.name){
+              this.errors.push("veuillez saisir votre nom !!!")
+            }
+
 
             if(!this.message){
               this.errors.push("saisissez votre message svp !!!")
             }
 
-            if(!this.name){
-              this.errors.push("veuillez saisir votre nom !!!")
-            }
-
+            
             if(!this.validEmail(this.email)){
               this.errors.push('veuillez saisir un mail valid !!')
             }
