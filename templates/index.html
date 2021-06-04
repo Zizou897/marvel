@@ -279,7 +279,9 @@ https://www.tooplate.com/view/2115-marvel
               <h2 class="mb-4">{{confi.entete_contact}}</h2>
             <div id="form">
               <form  method="posi">
-                <mark v-for=" error in errors" > ${ error } </mark>
+              <ul>
+                <li style="color: rgb(233, 110, 110);" v-for=" error in errors" > ${ error } </li>
+              </ul>
                 <div  class="row">
                   <div class="col-lg-6 col-12">
                     <input type="text" class="form-control" v-model="name" placeholder="Your Name" id="name">
@@ -337,9 +339,7 @@ https://www.tooplate.com/view/2115-marvel
         el: '#form',
         delimiters: ['${', '}'],
         data:{
-          errorsName: [],
-          errorsEmail: [],
-          errorsMessage: [],
+          errors: [],
           name: '',
           email: '',
           message: ''
@@ -350,15 +350,15 @@ https://www.tooplate.com/view/2115-marvel
             this.errors = [];
 
             if(!this.message){
-              this.errorsName.push("champs requis")
+              this.errors.push("champs requis")
             }
 
             if(!this.name){
-              this.errorsMessage.push("champs requis")
+              this.errors.push("champs requis")
             }
 
             if(!this.validEmail(this.email)){
-              this.errorsEmail.push('veuillez saisir un mail valid')
+              this.errors.push('veuillez saisir un mail valid')
             }
 
             if(!this.errors.length){
